@@ -1,0 +1,42 @@
+@font-face {
+    font-family: ttf;
+    src: url("./assets/font/ttf.ttf");
+}
+
+@font-face {
+    font-family: ttf-bold;
+    src: url("./assets/font/ttf-bold.ttf");
+}
+
+@font-face {
+    font-family: ttf-medium;
+    src: url("./assets/font/ttf-medium.ttf");
+}
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: ttf;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    width:38rem;
+}
+
+:root{
+    --text-primary : ;
+    --text-secondary : ;
+    --text-primary : ;
+
+    --l0-elevation:#fafafa ;
+    --l1-elevation: #ffffff ;
+}
+
+button{
+    cursor: pointer;
+}
