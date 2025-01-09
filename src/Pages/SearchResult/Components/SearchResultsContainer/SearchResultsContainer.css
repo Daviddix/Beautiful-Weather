@@ -1,0 +1,34 @@
+.results-container{
+    padding: 0 .5rem .1rem;
+}
+
+.results-container .result{
+    display: flex;
+    column-gap: .8rem;
+    align-items: center;
+    background-color: var(--l1-elevation);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 0 1rem;
+    margin: 0 0 .4rem 0;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.result h1{
+    font-size: 3.4rem;
+    color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+.result p{
+    font-size: 1.2rem;
+    font-family: ttf-medium;
+    color: var(--text-secondary);
+}
+
+.result p:last-of-type{
+    font-family: ttf;
+}

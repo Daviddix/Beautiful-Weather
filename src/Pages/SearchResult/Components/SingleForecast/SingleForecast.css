@@ -1,0 +1,24 @@
+.all-days-container .day h2{
+    font-size: 2.2rem;
+}
+
+.all-days-container .day p{
+    font-family: ttf-medium;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+
+}
+
+.all-days-container .day{
+    position: relative;
+}
+
+.all-days-container .day:not(.day:last-of-type)::after{
+    content: "";
+    width :.1rem;
+    height: 60%;
+    background-color: var(--border-color);
+    position: absolute;
+    right: -10px;
+    top:20%;
+}

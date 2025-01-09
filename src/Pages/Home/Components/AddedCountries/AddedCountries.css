@@ -1,0 +1,21 @@
+.added-countries .inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem 0 0 0;
+}
+
+.added-countries button{
+    border:none;
+    background-color: transparent;
+}
+
+.added-countries button p{
+    font-size: 1.4rem;
+    font-family: ttf-medium;
+    color : var(--text-secondary)
+}
+
+.added-countries p.active{
+    color : #338EFF;
+}
