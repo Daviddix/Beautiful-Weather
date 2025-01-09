@@ -1,0 +1,36 @@
+.main-weather-section .other-weather-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.other-weather-info > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 2rem 0;
+}
+
+.other-weather-info > div h3{
+    font-size: 1.2rem;
+    margin: .2rem 0 0;
+}
+
+.other-weather-info .icon-container{
+    background-color:var(--l0-elevation);
+    border: 1.5px solid #f0f0f0;
+    width: 4rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.icon-container img{
+    width:2rem;
+}

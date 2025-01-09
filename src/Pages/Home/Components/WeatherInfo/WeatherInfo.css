@@ -1,0 +1,16 @@
+.main-weather-section .weather-details{
+    margin: 4rem 0 3rem;
+    color: #ffffff;
+ 
+}
+
+.weather-details p{
+    font-size: 1.2rem;
+}
+
+.weather-details h1{
+    line-height: 1;
+    font-size: 6rem;
+    font-family: ttf-bold;
+    letter-spacing: .1px;
+}
