@@ -6,9 +6,11 @@ import ForecastContainer from "./Components/ForecastContainer/ForecastContainer"
 import SearchModal from "./Components/SearchModal/SearchModal";
 import { useState } from "react";
 import PlusButton from "./Components/PlusButton/PlusButton";
+import { useParams } from "react-router-dom";
 
 function SearchResult() {
   const [showSearchModal, setShowSearchModal] = useState(false)
+  const {name} = useParams()
   return (
     <main>
       <div className="main-weather-section">
@@ -27,7 +29,7 @@ function SearchResult() {
 
       <div className="forecast-container">
         <div className="inner">
-          <h1>5-day Forecast</h1>
+          <h1>5-day Forecast </h1>
 
           <ForecastContainer />
 
