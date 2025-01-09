@@ -29,12 +29,13 @@ body{
 }
 
 :root{
-    --text-primary : ;
-    --text-secondary : ;
-    --text-primary : ;
+    --text-primary :#000000 ;
+    --text-secondary :#414141 ;
 
     --l0-elevation:#fafafa ;
     --l1-elevation: #ffffff ;
+    
+    --border-color : #00000013;
 }
 
 button{

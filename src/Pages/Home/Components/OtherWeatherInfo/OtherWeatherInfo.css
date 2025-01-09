@@ -14,6 +14,7 @@
 .other-weather-info > div h3{
     font-size: 1.2rem;
     margin: .2rem 0 0;
+    color: var(--text-secondary);
 }
 
 .other-weather-info .icon-container{

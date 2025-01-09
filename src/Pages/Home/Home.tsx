@@ -3,6 +3,7 @@ import WeatherInfo from "./Components/WeatherInfo/WeatherInfo";
 import OtherWeatherInfo from "./Components/OtherWeatherInfo/OtherWeatherInfo";
 import SearchButton from "./Components/SearchButton/SearchButton";
 import ForecastContainer from "./Components/ForecastContainer/ForecastContainer";
+import SearchModal from "./Components/SearchModal/SearchModal";
 
 function Home() {
   return (
@@ -26,6 +27,8 @@ function Home() {
 
         </div>
       </div>
+
+      <SearchModal />
     </main>
   );
 }

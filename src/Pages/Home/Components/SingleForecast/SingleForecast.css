@@ -5,7 +5,8 @@
 .all-days-container .day p{
     font-family: ttf-medium;
     font-size: 1.1rem;
-    opacity: .8;
+    color: var(--text-secondary);
+
 }
 
 .all-days-container .day{
@@ -16,7 +17,7 @@
     content: "";
     width :.1rem;
     height: 60%;
-    background-color: rgba(0, 0, 0, 0.308);
+    background-color: var(--border-color);
     position: absolute;
     right: -10px;
     top:20%;
