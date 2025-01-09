@@ -1,5 +1,6 @@
 .all-days-container .day h2{
     font-size: 2.2rem;
+    color: var(--text-primary);
 }
 
 .all-days-container .day p{

@@ -7,6 +7,7 @@ import SearchModal from "./Components/SearchModal/SearchModal";
 import { useState } from "react";
 import PlusButton from "./Components/PlusButton/PlusButton";
 import { useParams } from "react-router-dom";
+import BackButton from "./Components/BackButton/BackButton";
 
 function SearchResult() {
   const [showSearchModal, setShowSearchModal] = useState(false)
@@ -16,6 +17,10 @@ function SearchResult() {
       <div className="main-weather-section">
         <div className="inner"> 
             <div className="search-plus">
+              <div className="back">
+           <BackButton />
+              </div>
+              
           <SearchButton setShowSearchModal={setShowSearchModal}/>
           <PlusButton />
             </div>
@@ -29,7 +34,7 @@ function SearchResult() {
 
       <div className="forecast-container">
         <div className="inner">
-          <h1>5-day Forecast </h1>
+          <h1>5-day Forecast</h1>
 
           <ForecastContainer />
 

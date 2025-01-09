@@ -1,7 +1,7 @@
 main{
     background-image: url("../../assets/icons/blue-glow.svg");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 70%;
     background-color: var(--l1-elevation);
 }
 
@@ -17,4 +17,5 @@ main .main-weather-section{
 
 .forecast-container{
     border-bottom: 1px solid var(--border-color);
+    padding: 0 0 .5rem 0;
 }

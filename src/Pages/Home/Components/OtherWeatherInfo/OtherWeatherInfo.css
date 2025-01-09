@@ -12,19 +12,20 @@
 }
 
 .other-weather-info > div h3{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: .2rem 0 0;
     color: var(--text-secondary);
 }
 
 .other-weather-info > div p{
-    font-size: 1rem;
+    font-size: 1.2rem;
+    color: var(--text-primary);
 }
 
 .other-weather-info .icon-container{
-    background-color:var(--l0-elevation);
-    border: 1.5px solid #f0f0f0;
-    width: 4rem;
+    background-color:var(--l1-elevation);
+    border: .5px solid var(--l3-elevation);
+    width: 5rem;
     aspect-ratio: 1/1;
     display: flex;
     align-items: center;
@@ -37,5 +38,5 @@
 }
 
 .icon-container img{
-    width:2rem;
+    width:2.4rem;
 }

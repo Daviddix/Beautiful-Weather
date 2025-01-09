@@ -33,9 +33,20 @@ body{
     --text-secondary :#414141 ;
 
     --l0-elevation:#fafafa ;
-    --l1-elevation: #ffffff ;
+    --l1-elevation: #ffffff;
+    --l3-elevation : #eeeeee;
     
     --border-color : #00000013;
+
+    --text-primary :#ffffff ;
+    --text-secondary :#cbcbcb ;
+    
+
+    --l0-elevation:#181818 ;
+    --l1-elevation: #292929 ;
+    --l3-elevation : #393939;
+    
+    --border-color : #dddddd13;
 }
 
 button{

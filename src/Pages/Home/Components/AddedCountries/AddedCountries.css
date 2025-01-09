@@ -12,7 +12,7 @@
 
 .added-countries button p{
     font-size: 1.4rem;
-    font-family: ttf-medium;
+    font-family: ttf;
     color : var(--text-secondary)
 }
 
