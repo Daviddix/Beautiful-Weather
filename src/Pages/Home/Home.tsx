@@ -6,6 +6,7 @@ import ForecastContainer from "./Components/ForecastContainer/ForecastContainer"
 import SearchModal from "./Components/SearchModal/SearchModal";
 import { useEffect, useState } from "react";
 import AddedCountries from "./Components/AddedCountries/AddedCountries";
+import HomeSkeletonLoader from "./Components/HomeSkeletonLoader/HomeSkeletonLoader";
 
 enum ComponentStates {
   loading = "loading",
@@ -80,41 +81,49 @@ function Home() {
     }
   }
 
-  return (
-    <main>
-      <div className="main-weather-section">
-        <div className="inner">
-          <SearchButton setShowSearchModal={setShowSearchModal} />
-
-          <WeatherInfo
-            country={mainWeatherInfo.country}
-            degree={mainWeatherInfo.degree}
-            longDescription={mainWeatherInfo.longDescription}
-            state={mainWeatherInfo.state}
-            shortDescription={mainWeatherInfo.shortDescription} />
-
-          <OtherWeatherInfo
-            wind={subWeatherInfo.wind}
-            pressure={subWeatherInfo.pressure}
-            humidity={subWeatherInfo.humidity} />
-
+  if(componentState == ComponentStates.loading){
+    return <HomeSkeletonLoader />
+  }else if(componentState == ComponentStates.error){
+    return <h1>Error</h1>
+  }else{
+    return (
+      <main>
+        <div className="main-weather-section">
+          <div className="inner">
+            <SearchButton setShowSearchModal={setShowSearchModal} />
+  
+            <WeatherInfo
+              country={mainWeatherInfo.country}
+              degree={mainWeatherInfo.degree}
+              longDescription={mainWeatherInfo.longDescription}
+              state={mainWeatherInfo.state}
+              shortDescription={mainWeatherInfo.shortDescription} />
+  
+            <OtherWeatherInfo
+              wind={subWeatherInfo.wind}
+              pressure={subWeatherInfo.pressure}
+              humidity={subWeatherInfo.humidity} />
+  
+          </div>
         </div>
-      </div>
-
-      <div className="forecast-container">
-        <div className="inner">
-          <h1>5-day Forecast</h1>
-
-          <ForecastContainer />
-
+  
+        <div className="forecast-container">
+          <div className="inner">
+            <h1>5-day Forecast</h1>
+  
+            <ForecastContainer />
+  
+          </div>
         </div>
-      </div>
+  
+        {showSearchModal && <SearchModal setShowSearchModal={setShowSearchModal} />}
+  
+        <AddedCountries />
+      </main>
+    );
+  }
 
-      {showSearchModal && <SearchModal setShowSearchModal={setShowSearchModal} />}
-
-      <AddedCountries />
-    </main>
-  );
+  
 }
 
 export default Home;
