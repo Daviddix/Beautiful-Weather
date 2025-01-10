@@ -7,17 +7,14 @@ interface IWeatherForecastData {
   temp : number,
 }
 
-interface dateObj extends IWeatherForecastData {
-  dt_txt : Date
-}
 
 interface IWeatherForecastDataObj {
   day : string,
   temp : number,
-  main : {
+   main : {
     temp : number
-
-  }
+  },
+  dt_txt : Date
 }
 
 function ForecastContainer() {
@@ -35,38 +32,37 @@ function ForecastContainer() {
 
       const { list } = await rawFetch.json();
       const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-      list.forEach((dateObj: dateObj) => {
-        const parsedDate = new Date(dateObj.dt_txt).getUTCDay();
-        const dayOfTheWeek = days[parsedDate];
-        dateObj.day = dayOfTheWeek;
-      });
-
       let uniqueDays : string[] = []
       let uniqueDaysArray : IWeatherForecastData[] = []
 
-      list.forEach((listObject : IWeatherForecastDataObj) => {
-        const currentItemDay = listObject.day
+      list.forEach((dateObj: IWeatherForecastDataObj) => {
+        const parsedDate = new Date(dateObj.dt_txt).getUTCDay();
+
+        const dayOfTheWeek = days[parsedDate];
+        
+        dateObj.day = dayOfTheWeek;
+
+         const currentItemDay = dateObj.day
         if (uniqueDays.includes(currentItemDay)) {
           return
         } else {
           const usefulData =  {
-            day : listObject.day,
-            temp : listObject.main.temp
+            day : dateObj.day,
+            temp : dateObj.main.temp
           }
           uniqueDaysArray.push(usefulData)
           uniqueDays.push(currentItemDay)
         }
-      })
+
+      });
 
       uniqueDaysArray.shift()
 
       setForecastData(uniqueDaysArray)
-
     } catch (err) {
       console.error(err);
     }
-  }
+  } 
 
   useEffect(() => {
     fetchForecastData()
