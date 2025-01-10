@@ -1,10 +1,14 @@
 import "./SingleForecast.css"
+interface ISingleForecastProps {
+  day : string,
+  temp : number
+}
 
-function SingleForecast() {
+function SingleForecast({day, temp} : ISingleForecastProps) {
   return (
     <div className="day">
-              <p>Monday</p>
-              <h2>23º</h2>
+              <p>{day}</p>
+              <h2>{temp.toFixed()}º</h2>
     </div>
   )
 }
