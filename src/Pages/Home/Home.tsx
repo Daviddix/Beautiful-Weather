@@ -6,7 +6,8 @@ import ForecastContainer from "./Components/ForecastContainer/ForecastContainer"
 import SearchModal from "./Components/SearchModal/SearchModal";
 import { useEffect, useState } from "react";
 import AddedCountries from "./Components/AddedCountries/AddedCountries";
-import HomeSkeletonLoader from "./Components/HomeSkeletonLoader/HomeSkeletonLoader";
+import HomeSkeletonLoader from "./Components/Loaders/HomeSkeletonLoader/HomeSkeletonLoader";
+import ForecastSkeleton from "./Components/Loaders/ForecastSkeleton/ForecastSkeleton";
 
 enum ComponentStates {
   loading = "loading",
@@ -77,7 +78,11 @@ function Home() {
   }
 
   if(componentState == ComponentStates.loading){
-    return <HomeSkeletonLoader />
+    return (
+      <>
+    <HomeSkeletonLoader />
+     </>
+    )
   }else if(componentState == ComponentStates.error){
     return <h1>Error</h1>
   }else{
@@ -103,11 +108,8 @@ function Home() {
         </div>
   
         <div className="forecast-container">
-          <div className="inner">
-            <h1>5-day Forecast</h1>
-  
+          <div className="inner">  
             <ForecastContainer />
-  
           </div>
         </div>
   

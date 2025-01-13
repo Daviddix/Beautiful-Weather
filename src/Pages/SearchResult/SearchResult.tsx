@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import PlusButton from "./Components/PlusButton/PlusButton";
 import { useNavigate, useParams } from "react-router-dom";
 import BackButton from "./Components/BackButton/BackButton";
-import HomeSkeletonLoader from "../Home/Components/HomeSkeletonLoader/HomeSkeletonLoader";
+import HomeSkeletonLoader from "../Home/Components/Loaders/HomeSkeletonLoader/HomeSkeletonLoader";
 
 enum ComponentStates {
   loading = "loading",

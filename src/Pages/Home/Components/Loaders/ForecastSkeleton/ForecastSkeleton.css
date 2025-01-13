@@ -1,0 +1,44 @@
+.fake-h1-forecast{
+    width:12rem;
+    height:1rem;
+    margin: 1.5rem 0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite ease-in-out;
+    -webkit-animation: loading 1.5s infinite ease-in-out;
+}
+
+.all-days-container .fake-p{
+    width:5rem;
+    height:.4rem;
+    margin: .5rem 0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite ease-in-out;
+    -webkit-animation: loading 1.5s infinite ease-in-out;
+}
+
+.all-days-container .fake-h1{
+    width:4rem;
+    height:3rem;
+    margin: .5rem 0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite ease-in-out;
+    -webkit-animation: loading 1.5s infinite ease-in-out;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SingleForecast from "../SingleForecast/SingleForecast"
 import "./ForecastContainer.css"
+import ForecastSkeleton from "../Loaders/ForecastSkeleton/ForecastSkeleton";
 
 interface IWeatherForecastData {
   day : string,
@@ -17,10 +18,18 @@ interface IWeatherForecastDataObj {
   dt_txt : Date
 }
 
+enum ComponentStates {
+  loading = "loading",
+  completed = "completed",
+  error = "error"
+}
+
 function ForecastContainer() {
   const [forecastData, setForecastData] = useState<IWeatherForecastData[]>([])
+  const [componentState,  setComponentState] = useState(ComponentStates.loading)
 
   async function fetchForecastData() {
+    setComponentState(ComponentStates.loading)
     try {
       const rawFetch = await fetch(
         "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1"
@@ -59,8 +68,10 @@ function ForecastContainer() {
       uniqueDaysArray.shift()
 
       setForecastData(uniqueDaysArray)
+      setComponentState(ComponentStates.completed)
     } catch (err) {
       console.error(err);
+      setComponentState(ComponentStates.error)
     }
   } 
 
@@ -72,11 +83,21 @@ function ForecastContainer() {
     return <SingleForecast key={day} day={day} temp={temp} />
   })
 
-  return (
-    <div className="all-days-container">
-      {mappedForecast}
-    </div>
-  )
+  if(componentState == ComponentStates.loading){
+    return <ForecastSkeleton />
+  }else if(componentState == ComponentStates.completed){
+    return (
+      <>
+      <h1>5-day Forecast</h1>
+  
+      <div className="all-days-container">
+        {mappedForecast}
+      </div>
+      </>
+    )
+  }else{
+    return <h1>Error</h1>
+  }
 }
 
 export default ForecastContainer
