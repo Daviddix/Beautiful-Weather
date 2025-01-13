@@ -45,10 +45,58 @@ function Home() {
   const [componentState, setComponentState] = useState(ComponentStates.loading)
   const [userLocationInfo, setUserLocationInfo] = useState<locationInfo | null>(null)
   const [colorClassName, setColorClassName] = useState<color>("")
+  const [allAddedCountries, setAllAddedCountries] = useState(["Lagos", "Accra", "London"])
+  const [activeCountry, setActiveCountry] = useState("")
+  const [refreshCountry, setRefreshCountry] = useState(0)
 
   useEffect(() => {
     requestUserLocation(successfulPosition, failedPosition)
   }, [])
+
+  useEffect(() =>{
+    if(refreshCountry == 0){
+      return
+    }
+    getWeatherInformationForSavedCountry(activeCountry)
+    setRefreshCountry(0)
+  }, [refreshCountry])
+
+  async function getWeatherInformationForSavedCountry(countryName : string){
+    setComponentState(ComponentStates.loading)
+    try {
+      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${countryName}&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1`)
+      const response = await rawFetch.json()
+
+      const newMainWeatherInfo = {
+        country: response.sys.country,
+        state: response.name,
+        shortDescription: response.weather[0].main,
+        longDescription: response.weather[0].description,
+        degree: response.main.temp,
+      }
+
+      const newSubWeatherInfo = {
+        wind: response.wind.speed,
+        pressure: response.main.pressure,
+        humidity: response.main.humidity,
+      }
+
+      setMainWeatherInfo(newMainWeatherInfo)
+      newMainWeatherInfo.degree <= 10 ? setColorClassName("blue") :  setColorClassName("red")
+      newMainWeatherInfo.longDescription.toLowerCase().includes("rain") ? setColorClassName("gray") :  ""
+      setUserLocationInfo({status : "success", longitude : response.coord.lon, latitude : response.coord.lat})
+      setSubWeatherInfo(newSubWeatherInfo)
+      setComponentState(ComponentStates.completed)
+
+      if (!rawFetch.ok) {
+        throw new Error("Server error")
+      }
+    }
+    catch (err) {
+      setComponentState(ComponentStates.error)
+      console.log(err)
+    }
+  }
 
   async function fetchWeatherInformation(long:number, lat:number) {
     try {
@@ -73,6 +121,7 @@ function Home() {
       newMainWeatherInfo.degree <= 10 ? setColorClassName("blue") :  setColorClassName("red")
       newMainWeatherInfo.longDescription.toLowerCase().includes("rain") ? setColorClassName("gray") :  ""
       setSubWeatherInfo(newSubWeatherInfo)
+      setActiveCountry(newMainWeatherInfo.state)
       setComponentState(ComponentStates.completed)
 
       if (!rawFetch.ok) {
@@ -168,7 +217,11 @@ function Home() {
   
         {showSearchModal && <SearchModal setShowSearchModal={setShowSearchModal} />}
   
-        <AddedCountries />
+        <AddedCountries 
+        activeCountry={activeCountry}
+        setRefreshCountry={setRefreshCountry}
+        setActiveCountry={setActiveCountry}
+        allAddedCountries={allAddedCountries} />
       </main>
     );
   }

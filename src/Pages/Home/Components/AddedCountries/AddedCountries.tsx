@@ -1,20 +1,34 @@
 import "./AddedCountries.css"
+import {useState} from "react"
 
-function AddedCountries() {
+interface addedCountriesProps {
+  allAddedCountries : string[],
+  activeCountry : string,
+  setActiveCountry :  React.Dispatch<React.SetStateAction<string>>,
+  setRefreshCountry :  React.Dispatch<React.SetStateAction<number>>
+}
+
+function AddedCountries({allAddedCountries, activeCountry, setActiveCountry, setRefreshCountry} : addedCountriesProps) {
+
+  function makeMeActive(name : string){
+    setActiveCountry(name)
+    setRefreshCountry(1)
+  }
+
+  const mappedCountries = allAddedCountries.map((country)=>{
+    return (
+    <button
+    onClick={()=>{
+      makeMeActive(country)
+    }}
+    >
+    <p className={activeCountry == country ? "active" : ""}>{country}</p>
+    </button>)
+  })
   return (
     <div className="added-countries">
         <div className="inner">
-          <button>
-          <p className="active">Abuja</p>
-          </button>
-
-          <button>
-          <p>Accra</p>
-          </button>
-
-          <button>
-          <p>Moscow</p>
-          </button>
+        {mappedCountries}
         </div>
       </div>
   )
