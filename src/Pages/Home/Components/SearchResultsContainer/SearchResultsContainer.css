@@ -17,6 +17,12 @@
     -o-border-radius: 1rem;
 }
 
+.results-container > button{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
 .result h1{
     font-size: 3.4rem;
     color: var(--text-primary);
@@ -27,6 +33,7 @@
     font-size: 1.2rem;
     font-family: ttf-medium;
     color: var(--text-secondary);
+    text-align: left;
 }
 
 .result p:last-of-type{

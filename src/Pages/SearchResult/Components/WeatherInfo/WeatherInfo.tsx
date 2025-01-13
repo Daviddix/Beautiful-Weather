@@ -1,11 +1,18 @@
 import "./WeatherInfo.css"
+interface WeatherInfoProps {
+  country : string,
+   state : string,
+    shortDescription : string,
+     longDescription : string,
+      degree : number,
+}
 
-function WeatherInfo() {
+function WeatherInfo({country, degree, longDescription, state, shortDescription} : WeatherInfoProps) {
   return (
     <div className="weather-details">
-            <p>Nigeria, Abuja</p>
-            <h1>10º</h1>
-            <p>Sunny, Mild Heat</p>
+            <p>{country}, {state}</p>
+            <h1>{degree.toFixed()}º</h1>
+            <p>{shortDescription}, {longDescription}</p>
           </div>
   )
 }

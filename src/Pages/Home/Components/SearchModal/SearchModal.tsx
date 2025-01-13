@@ -25,7 +25,7 @@ function SearchModal({setShowSearchModal} : SearchModalProps) {
   async function innerFetch(searchParam: string) {
     try {
       const rawFetch = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${searchParam}&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1`
+        `https://api.openweathermap.org/data/2.5/weather?q=${searchParam}&units=metric&limit=3&appid=5df3b8dda637f8873722662b50a8a9c1`
       );
   
       if (!rawFetch.ok) {

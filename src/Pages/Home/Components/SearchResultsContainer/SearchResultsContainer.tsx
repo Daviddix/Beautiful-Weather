@@ -18,17 +18,19 @@ function SearchResultsContainer({country, state, shortDescription, longDescripti
 
   return (
     <div className="results-container">
-      <div 
+      <button
       onClick={()=>{
         navigateToPage(state)
       }}
-      className="result">
+      >
+      <div className="result">
         <h1>{degree.toFixed()}º</h1>
         <div className="other-info">
           <p>{state}, {country}</p>
           <p>{shortDescription}, {longDescription}</p>
         </div>
       </div>
+      </button>
     </div>
   )
 

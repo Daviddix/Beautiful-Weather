@@ -30,18 +30,8 @@ interface SubWeatherInfoProps {
 
 function Home() {
   const [showSearchModal, setShowSearchModal] = useState(false)
-  const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps>({
-    country: "",
-    state: "",
-    shortDescription: "",
-    longDescription: "",
-    degree: 0
-  })
-  const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps>({
-    humidity: 0,
-    wind: 0,
-    pressure: 0
-  })
+  const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps | null>(null)
+  const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps | null>(null)
   const [componentState, setComponentState] = useState(ComponentStates.loading)
 
   useEffect(() => {
@@ -93,16 +83,16 @@ function Home() {
             <SearchButton setShowSearchModal={setShowSearchModal} />
   
             <WeatherInfo
-              country={mainWeatherInfo.country}
-              degree={mainWeatherInfo.degree}
-              longDescription={mainWeatherInfo.longDescription}
-              state={mainWeatherInfo.state}
-              shortDescription={mainWeatherInfo.shortDescription} />
+              country={mainWeatherInfo!.country}
+              degree={mainWeatherInfo!.degree}
+              longDescription={mainWeatherInfo!.longDescription}
+              state={mainWeatherInfo!.state}
+              shortDescription={mainWeatherInfo!.shortDescription} />
   
             <OtherWeatherInfo
-              wind={subWeatherInfo.wind}
-              pressure={subWeatherInfo.pressure}
-              humidity={subWeatherInfo.humidity} />
+              wind={subWeatherInfo!.wind}
+              pressure={subWeatherInfo!.pressure}
+              humidity={subWeatherInfo!.humidity} />
   
           </div>
         </div>

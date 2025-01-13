@@ -3,7 +3,13 @@ import pressureIcon from "../../../../assets/icons/pressure-icon.svg";
 import humidityIcon from "../../../../assets/icons/humidity-icon.svg";
 import "./OtherWeatherInfo.css"
 
-function OtherWeatherInfo() {
+interface WeatherInfoProps {
+  wind : number,
+   pressure : number,
+    humidity : number,
+}
+
+function OtherWeatherInfo({wind, pressure, humidity} : WeatherInfoProps) {
   return (
     <div className="other-weather-info">
             <div>
@@ -11,7 +17,7 @@ function OtherWeatherInfo() {
                 <img src={windIcon} alt="wind icon" />
               </div>
               <h3>Wind</h3>
-              <p>350 p/h</p>
+              <p>{wind} m/s</p>
             </div>
 
             <div>
@@ -19,7 +25,7 @@ function OtherWeatherInfo() {
                 <img src={pressureIcon} alt="pressure icon" />
               </div>
               <h3>Pressure</h3>
-              <p>23 pphr</p>
+              <p>{pressure} hPa</p>
             </div>
 
             <div>
@@ -27,7 +33,7 @@ function OtherWeatherInfo() {
                 <img src={humidityIcon} alt="humidity icon" />
               </div>
               <h3>Humidity</h3>
-              <p>23 p/h</p>
+              <p>{humidity}%</p>
             </div>
           </div>
   )

@@ -1,25 +1,43 @@
+import { useNavigate } from "react-router-dom";
 import "./SearchResultsContainer.css";
 
-function SearchResultsContainer() {
+interface SearchResultContainerProps {
+  country: string,
+  state: string,
+  shortDescription: string,
+  longDescription: string,
+  degree: number,
+  setShowSearchModal : Function
+}
+
+function SearchResultsContainer({country, state, shortDescription, longDescription, degree, setShowSearchModal} : SearchResultContainerProps) {
+  const navigate = useNavigate()
+
+  function navigateToPage(name : string){
+    navigate(`/search/${name}`, {
+      replace : true
+    })
+    setShowSearchModal(false)
+  }
+
   return (
     <div className="results-container">
+      <button
+      onClick={()=>{
+        navigateToPage(state)
+      }}
+      >
       <div className="result">
-        <h1>16º</h1>
+        <h1>{degree.toFixed()}º</h1>
         <div className="other-info">
-          <p>Accra, Ghana</p>
-          <p>Rain, Thunderstorm</p>
+          <p>{state}, {country}</p>
+          <p>{shortDescription}, {longDescription}</p>
         </div>
       </div>
-
-      <div className="result">
-        <h1>10º</h1>
-        <div className="other-info">
-          <p>Accra, Ghana</p>
-          <p>Rain, Thunderstorm</p>
-        </div>
-      </div>
+      </button>
     </div>
-  );
+  )
+
 }
 
 export default SearchResultsContainer;
