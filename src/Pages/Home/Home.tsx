@@ -31,20 +31,28 @@ interface SubWeatherInfoProps {
 
 type color = "blue" | "red" | "" | "gray"
 
+interface locationInfo {
+  status : "success" | "failure",
+  longitude? : number,
+  latitude? : number,
+  errorMessage ? : string
+}
+
 function Home() {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps | null>(null)
   const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps | null>(null)
   const [componentState, setComponentState] = useState(ComponentStates.loading)
+  const [userLocationInfo, setUserLocationInfo] = useState<locationInfo | null>(null)
   const [colorClassName, setColorClassName] = useState<color>("")
 
   useEffect(() => {
-    fetchWeatherInformation()
+    requestUserLocation(successfulPosition, failedPosition)
   }, [])
 
-  async function fetchWeatherInformation() {
+  async function fetchWeatherInformation(long:number, lat:number) {
     try {
-      const rawFetch = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=37.7749&lon=-122.4194&units=metric&exclude={part}&appid=5df3b8dda637f8873722662b50a8a9c1")
+      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&exclude={part}&appid=5df3b8dda637f8873722662b50a8a9c1`)
       const response = await rawFetch.json()
 
       const newMainWeatherInfo : MainWeatherInfoProps = {
@@ -76,6 +84,48 @@ function Home() {
       console.log(err)
     }
   }
+
+  async function requestUserLocation(successFn : PositionCallback, failedFn : PositionErrorCallback) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successFn, failedFn, {enableHighAccuracy : true});
+    } else {
+      return {
+        status : "failure",
+        errorMessage : "Geolocation is not supported by this browser."
+      }
+    }
+  }
+
+  function successfulPosition(pos : GeolocationPosition){
+    const cord = pos.coords 
+    const long = cord.longitude
+    const lat = cord.latitude
+    setUserLocationInfo({status : "success", longitude : long, latitude : lat})
+    fetchWeatherInformation(long, lat)
+  }
+
+  function failedPosition(error : GeolocationPositionError) {
+    let errorMessage 
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+          errorMessage = "User denied the request for Geolocation."
+        break;
+      case error.POSITION_UNAVAILABLE:
+          errorMessage = "Location information is unavailable."
+        break;
+      case error.TIMEOUT:
+          errorMessage = "The request to get user location timed out."
+        break;
+    }
+
+    const l : locationInfo = {
+    status : "failure",
+    errorMessage : errorMessage
+  }
+
+  setUserLocationInfo(l)
+  } 
+  
 
   if(componentState == ComponentStates.loading){
     return (
@@ -109,7 +159,10 @@ function Home() {
   
         <div className="forecast-container">
           <div className="inner">  
-            <ForecastContainer />
+            <ForecastContainer
+            long={userLocationInfo!.longitude}
+            lat={userLocationInfo!.latitude}
+            />
           </div>
         </div>
   
@@ -121,6 +174,6 @@ function Home() {
   }
 
   
-}
+  }
 
 export default Home;

@@ -24,7 +24,12 @@ enum ComponentStates {
   error = "error"
 }
 
-function ForecastContainer() {
+interface forecastProps {
+  long? : number,
+  lat? : number
+}
+
+function ForecastContainer({long, lat} : forecastProps) {
   const [forecastData, setForecastData] = useState<IWeatherForecastData[]>([])
   const [componentState,  setComponentState] = useState(ComponentStates.loading)
 
@@ -32,7 +37,7 @@ function ForecastContainer() {
     setComponentState(ComponentStates.loading)
     try {
       const rawFetch = await fetch(
-        "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1"
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1`
       );
 
       if (!rawFetch.ok) {
