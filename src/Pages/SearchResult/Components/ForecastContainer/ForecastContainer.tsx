@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SingleForecast from "../SingleForecast/SingleForecast"
 import "./ForecastContainer.css"
 import { useParams } from "react-router-dom";
+import ForecastSkeleton from "../../../Home/Components/Loaders/ForecastSkeleton/ForecastSkeleton";
 
 interface IWeatherForecastData {
   day : string,
@@ -18,8 +19,15 @@ interface IWeatherForecastDataObj {
   dt_txt : Date
 }
 
+enum ComponentStates {
+  loading = "loading",
+  completed = "completed",
+  error = "error"
+}
+
 function ForecastContainer() {
   const [forecastData, setForecastData] = useState<IWeatherForecastData[]>([])
+  const [componentState,  setComponentState] = useState(ComponentStates.loading)
   const {state} = useParams()
   console.log(state)
 
@@ -62,7 +70,9 @@ function ForecastContainer() {
       uniqueDaysArray.shift()
 
       setForecastData(uniqueDaysArray)
+      setComponentState(ComponentStates.completed)
     } catch (err) {
+      setComponentState(ComponentStates.error)
       console.error(err);
     }
   } 
@@ -75,11 +85,21 @@ function ForecastContainer() {
     return <SingleForecast key={day} day={day} temp={temp} />
   })
 
-  return (
-    <div className="all-days-container">
-      {mappedForecast}
-    </div>
-  )
+  if(componentState == ComponentStates.loading){
+    return <ForecastSkeleton />
+  }else if(componentState == ComponentStates.completed){
+    return (
+      <>
+      <h1>5-day Forecast</h1>
+  
+      <div className="all-days-container">
+        {mappedForecast}
+      </div>
+      </>
+    )
+  }else{
+    return <h1>Error</h1>
+  }
 }
 
 export default ForecastContainer

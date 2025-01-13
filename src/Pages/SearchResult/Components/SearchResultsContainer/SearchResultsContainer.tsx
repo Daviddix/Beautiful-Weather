@@ -14,9 +14,7 @@ function SearchResultsContainer({country, state, shortDescription, longDescripti
   const navigate = useNavigate()
 
   function navigateToPage(name : string){
-    navigate(`/search/${name}`, {
-      replace : true
-    })
+    navigate(`/search/${name}`)
     setShowSearchModal(false)
   }
 

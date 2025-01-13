@@ -125,10 +125,7 @@ function SearchResult() {
 
       <div className="forecast-container">
         <div className="inner">
-          <h1>5-day Forecast</h1>
-
           <ForecastContainer />
-
         </div>
       </div>
 
