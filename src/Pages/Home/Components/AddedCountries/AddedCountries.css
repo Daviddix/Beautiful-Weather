@@ -16,6 +16,10 @@
     color : var(--text-secondary)
 }
 
-.added-countries p.active{
+main.blue .added-countries p.active{
     color : #338EFF;
+}
+
+main.red .added-countries p.active{
+    color : #ff7433;
 }

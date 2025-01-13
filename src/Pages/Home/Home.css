@@ -1,8 +1,19 @@
 main{
-    background-image: url("../../assets/icons/blue-glow.svg");
     background-repeat: no-repeat;
     background-size: 70%;
     background-color: var(--l1-elevation);
+}
+
+main.blue{
+    background-image: url("../../assets/icons/blue-glow.svg");
+}
+
+main.red{
+    background-image: url("../../assets/icons/red-glow.svg");
+}
+
+main.gray{
+    background-image: url("../../assets/icons/grey-glow.svg");
 }
 
 main .main-weather-section{

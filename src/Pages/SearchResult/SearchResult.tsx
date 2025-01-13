@@ -6,7 +6,7 @@ import ForecastContainer from "./Components/ForecastContainer/ForecastContainer"
 import SearchModal from "./Components/SearchModal/SearchModal";
 import { useEffect, useState } from "react";
 import PlusButton from "./Components/PlusButton/PlusButton";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BackButton from "./Components/BackButton/BackButton";
 import HomeSkeletonLoader from "../Home/Components/HomeSkeletonLoader/HomeSkeletonLoader";
 
@@ -30,12 +30,16 @@ interface SubWeatherInfoProps {
   humidity: number,
 }
 
+type color = "blue" | "red" | "" | "gray"
+
 function SearchResult() {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const {state} = useParams()
+  const navigate = useNavigate()
   const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps | null>(null)
   const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps | null>(null)
   const [componentState, setComponentState] = useState(ComponentStates.loading)
+  const [colorClassName, setColorClassName] = useState<color>("")
 
   useEffect(()=>{
     fetchWeatherForState()
@@ -62,6 +66,8 @@ function SearchResult() {
       }
 
       setMainWeatherInfo(newMainWeatherInfo)
+      newMainWeatherInfo.degree <= 10 ? setColorClassName("blue") :  setColorClassName("red")
+      newMainWeatherInfo.longDescription.toLowerCase().includes("rain") ? setColorClassName("gray") :  ""
       setSubWeatherInfo(newSubWeatherInfo)
       setComponentState(ComponentStates.completed)
 
@@ -74,6 +80,10 @@ function SearchResult() {
       console.log(err)
     }
   }
+
+  function goBack(){
+    navigate(-1)
+  }
  
   
   if(componentState == ComponentStates.loading){
@@ -82,12 +92,14 @@ function SearchResult() {
     return <h1>Error</h1>
   }else{
     return (
-      <main>
+      <main className={colorClassName}>
       <div className="main-weather-section">
         <div className="inner"> 
             <div className="search-plus">
               <div className="back">
-           <BackButton />
+           <BackButton
+           goBack={goBack}
+           />
               </div>
               
           <SearchButton setShowSearchModal={setShowSearchModal}/>

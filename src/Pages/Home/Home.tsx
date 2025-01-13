@@ -28,11 +28,14 @@ interface SubWeatherInfoProps {
   humidity: number,
 }
 
+type color = "blue" | "red" | "" | "gray"
+
 function Home() {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps | null>(null)
   const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps | null>(null)
   const [componentState, setComponentState] = useState(ComponentStates.loading)
+  const [colorClassName, setColorClassName] = useState<color>("")
 
   useEffect(() => {
     fetchWeatherInformation()
@@ -43,7 +46,7 @@ function Home() {
       const rawFetch = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=37.7749&lon=-122.4194&units=metric&exclude={part}&appid=5df3b8dda637f8873722662b50a8a9c1")
       const response = await rawFetch.json()
 
-      const newMainWeatherInfo = {
+      const newMainWeatherInfo : MainWeatherInfoProps = {
         country: response.sys.country,
         state: response.name,
         shortDescription: response.weather[0].main,
@@ -58,6 +61,8 @@ function Home() {
       }
 
       setMainWeatherInfo(newMainWeatherInfo)
+      newMainWeatherInfo.degree <= 10 ? setColorClassName("blue") :  setColorClassName("red")
+      newMainWeatherInfo.longDescription.toLowerCase().includes("rain") ? setColorClassName("gray") :  ""
       setSubWeatherInfo(newSubWeatherInfo)
       setComponentState(ComponentStates.completed)
 
@@ -77,7 +82,7 @@ function Home() {
     return <h1>Error</h1>
   }else{
     return (
-      <main>
+      <main className={colorClassName}>
         <div className="main-weather-section">
           <div className="inner">
             <SearchButton setShowSearchModal={setShowSearchModal} />
