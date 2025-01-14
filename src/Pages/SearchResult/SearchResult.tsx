@@ -32,7 +32,14 @@ interface SubWeatherInfoProps {
 
 type color = "blue" | "red" | "" | "gray"
 
-function SearchResult() {
+type AddedCountriesArray = string[]
+
+interface SearchResultsProps {
+  allAddedCountries : string[],
+  setAllAddedCountries :  React.Dispatch<React.SetStateAction<AddedCountriesArray>>
+}
+
+function SearchResult({allAddedCountries, setAllAddedCountries} : SearchResultsProps) {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const {state} = useParams()
   const navigate = useNavigate()
@@ -103,7 +110,12 @@ function SearchResult() {
               </div>
               
           <SearchButton setShowSearchModal={setShowSearchModal}/>
-          <PlusButton />
+
+          <PlusButton
+          state={state}
+          allAddedCountries={allAddedCountries} 
+          setAllAddedCountries={setAllAddedCountries}
+          />
             </div>
 
           <WeatherInfo

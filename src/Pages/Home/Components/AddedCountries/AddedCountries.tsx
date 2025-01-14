@@ -1,14 +1,16 @@
 import "./AddedCountries.css"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 
 interface addedCountriesProps {
   allAddedCountries : string[],
   activeCountry : string,
   setActiveCountry :  React.Dispatch<React.SetStateAction<string>>,
-  setRefreshCountry :  React.Dispatch<React.SetStateAction<number>>
+  setRefreshCountry :  React.Dispatch<React.SetStateAction<number>>,
+  setAllAddedCountries : React.Dispatch<React.SetStateAction<string[]>>
 }
 
-function AddedCountries({allAddedCountries, activeCountry, setActiveCountry, setRefreshCountry} : addedCountriesProps) {
+function AddedCountries({allAddedCountries, activeCountry, setActiveCountry, setRefreshCountry, setAllAddedCountries} : addedCountriesProps) {
+
 
   function makeMeActive(name : string){
     if(activeCountry == name){

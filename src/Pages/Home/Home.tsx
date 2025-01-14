@@ -38,14 +38,20 @@ interface locationInfo {
   errorMessage ? : string
 }
 
-function Home() {
+type AddedCountriesArray = string[]
+
+interface HomeProps {
+  allAddedCountries : string[],
+  setAllAddedCountries :  React.Dispatch<React.SetStateAction<AddedCountriesArray>>
+}
+
+function Home({allAddedCountries, setAllAddedCountries} : HomeProps) {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps | null>(null)
   const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps | null>(null)
   const [componentState, setComponentState] = useState(ComponentStates.loading)
   const [userLocationInfo, setUserLocationInfo] = useState<locationInfo | null>(null)
   const [colorClassName, setColorClassName] = useState<color>("")
-  const [allAddedCountries, setAllAddedCountries] = useState(["Abuja", "Accra", "London"])
   const [activeCountry, setActiveCountry] = useState("")
   const [refreshCountry, setRefreshCountry] = useState(0)
 
@@ -123,6 +129,7 @@ function Home() {
       setSubWeatherInfo(newSubWeatherInfo)
       setActiveCountry(newMainWeatherInfo.state)
       setComponentState(ComponentStates.completed)
+      await handleChromeStorageForAddedCountries(newMainWeatherInfo.state)
 
       if (!rawFetch.ok) {
         throw new Error("Server error")
@@ -142,6 +149,18 @@ function Home() {
         status : "failure",
         errorMessage : "Geolocation is not supported by this browser."
       }
+    }
+  }
+
+  async function handleChromeStorageForAddedCountries(mainCountryName : string){
+    const allAddedCountries = await chrome.storage.local.get("addedCountries")
+    if(!allAddedCountries.addedCountries){
+      await chrome.storage.local.set({addedCountries : [mainCountryName]})
+      setAllAddedCountries([mainCountryName])
+      return
+    }else{
+      const addedCountriesFromStorage = allAddedCountries.addedCountries
+      setAllAddedCountries(addedCountriesFromStorage)
     }
   }
 
@@ -221,6 +240,7 @@ function Home() {
         activeCountry={activeCountry}
         setRefreshCountry={setRefreshCountry}
         setActiveCountry={setActiveCountry}
+        setAllAddedCountries={setAllAddedCountries}
         allAddedCountries={allAddedCountries} />
       </main>
     );
