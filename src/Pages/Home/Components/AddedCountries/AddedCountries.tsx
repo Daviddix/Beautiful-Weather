@@ -1,5 +1,4 @@
 import "./AddedCountries.css"
-import {useEffect, useState} from "react"
 
 interface addedCountriesProps {
   allAddedCountries : string[],

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import AddedCountries from "./Components/AddedCountries/AddedCountries";
 import HomeSkeletonLoader from "./Components/Loaders/HomeSkeletonLoader/HomeSkeletonLoader";
 import ForecastSkeleton from "./Components/Loaders/ForecastSkeleton/ForecastSkeleton";
+import HomepageError from "./Components/ErrorComponents/HomepageError/HomepageError";
 
 enum ComponentStates {
   loading = "loading",
@@ -202,7 +203,7 @@ function Home({allAddedCountries, setAllAddedCountries} : HomeProps) {
      </>
     )
   }else if(componentState == ComponentStates.error){
-    return <h1>Error</h1>
+    return <HomepageError />
   }else{
     return (
       <main className={colorClassName}>

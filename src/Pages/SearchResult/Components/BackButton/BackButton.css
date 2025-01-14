@@ -6,4 +6,5 @@ button.back{
 
 button.back svg{
     width: 2.8rem;
+    color: var(--text-primary);
 }

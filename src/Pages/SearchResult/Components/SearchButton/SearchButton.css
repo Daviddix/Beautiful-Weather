@@ -8,3 +8,7 @@
 .main-weather-section .search-icon{
     width: 2rem;
 }
+
+.search-icon g path{
+    stroke: var(--text-primary);
+}

@@ -1,4 +1,3 @@
-import plusIcon from "../../../../assets/icons/plus-icon.svg"
 import "./PlusButton.css"
 
 type AddedCountriesArray = string[]
@@ -29,7 +28,9 @@ function PlusButton({allAddedCountries, setAllAddedCountries, state} : PlusButto
     <button
     onClick={saveCountry}
     className="plus">
-            <img src={plusIcon} alt="plus icon" className="plus-icon" />
+      <svg className="plus-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.00065 2.33334V11.6667M11.6673 7.00001H2.33398" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
     </button>
   )
 }

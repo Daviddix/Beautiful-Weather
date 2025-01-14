@@ -11,7 +11,7 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background: linear-gradient(90deg, var(--l0-elevation) 25%,var(--l3-elevation) 50%, var(--l0-elevation) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite ease-in-out;
     -webkit-animation: loading 1.5s infinite ease-in-out;
@@ -26,7 +26,7 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background: linear-gradient(90deg, var(--l0-elevation) 25%,var(--l3-elevation) 50%, var(--l0-elevation) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite ease-in-out;
     -webkit-animation: loading 1.5s infinite ease-in-out;
@@ -41,7 +41,7 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background: linear-gradient(90deg, var(--l0-elevation) 25%,var(--l3-elevation) 50%, var(--l0-elevation) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite ease-in-out;
     -webkit-animation: loading 1.5s infinite ease-in-out;
@@ -56,7 +56,7 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background: linear-gradient(90deg, var(--l0-elevation) 25%,var(--l3-elevation) 50%, var(--l0-elevation) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite ease-in-out;
     -webkit-animation: loading 1.5s infinite ease-in-out;
@@ -71,7 +71,7 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-    background: linear-gradient(90deg, #e0e0e0 25%, #f7f7f7 50%, #e0e0e0 75%);
+    background: linear-gradient(90deg, var(--l0-elevation) 25%,var(--l3-elevation) 50%, var(--l0-elevation) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite ease-in-out;
     -webkit-animation: loading 1.5s infinite ease-in-out;

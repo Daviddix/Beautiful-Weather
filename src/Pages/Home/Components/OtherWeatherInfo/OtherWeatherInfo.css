@@ -37,6 +37,10 @@
     -o-border-radius: 50%;
 }
 
-.icon-container img{
+.icon-container svg{
     width:2.4rem;
+}
+
+.icon-container path{
+    stroke: var(--text-primary);
 }

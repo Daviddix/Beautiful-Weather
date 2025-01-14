@@ -8,3 +8,7 @@
 .main-weather-section .plus-icon{
     width: 2rem;
 }
+
+.plus-icon path{
+    stroke: var(--text-primary);
+}

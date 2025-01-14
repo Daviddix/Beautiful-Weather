@@ -1,0 +1,11 @@
+.search-error-container p{
+    text-align: center;
+    margin: .5rem 0;
+    font-size: 1.4rem;
+    font-family: ttf-medium;
+    color: rgb(146, 0, 0);
+}
+
+.search-error-container span{
+    font-style: italic;
+}
