@@ -45,7 +45,7 @@ function Home() {
   const [componentState, setComponentState] = useState(ComponentStates.loading)
   const [userLocationInfo, setUserLocationInfo] = useState<locationInfo | null>(null)
   const [colorClassName, setColorClassName] = useState<color>("")
-  const [allAddedCountries, setAllAddedCountries] = useState(["Lagos", "Accra", "London"])
+  const [allAddedCountries, setAllAddedCountries] = useState(["Abuja", "Accra", "London"])
   const [activeCountry, setActiveCountry] = useState("")
   const [refreshCountry, setRefreshCountry] = useState(0)
 

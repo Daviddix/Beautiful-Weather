@@ -11,6 +11,9 @@ interface addedCountriesProps {
 function AddedCountries({allAddedCountries, activeCountry, setActiveCountry, setRefreshCountry} : addedCountriesProps) {
 
   function makeMeActive(name : string){
+    if(activeCountry == name){
+      return
+    }
     setActiveCountry(name)
     setRefreshCountry(1)
   }
