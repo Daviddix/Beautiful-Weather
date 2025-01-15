@@ -43,10 +43,11 @@ type AddedCountriesArray = string[]
 
 interface HomeProps {
   allAddedCountries : string[],
-  setAllAddedCountries :  React.Dispatch<React.SetStateAction<AddedCountriesArray>>
+  setAllAddedCountries :  React.Dispatch<React.SetStateAction<AddedCountriesArray>>,
+  isNight : boolean
 }
 
-function Home({allAddedCountries, setAllAddedCountries} : HomeProps) {
+function Home({allAddedCountries, setAllAddedCountries, isNight} : HomeProps) {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [mainWeatherInfo, setMainWeatherInfo] = useState<MainWeatherInfoProps | null>(null)
   const [subWeatherInfo, setSubWeatherInfo] = useState<SubWeatherInfoProps | null>(null)
@@ -199,14 +200,14 @@ function Home({allAddedCountries, setAllAddedCountries} : HomeProps) {
   if(componentState == ComponentStates.loading){
     return (
       <>
-    <HomeSkeletonLoader />
+    <HomeSkeletonLoader page={"home"} isNight={isNight} />
      </>
     )
   }else if(componentState == ComponentStates.error){
     return <HomepageError />
   }else{
     return (
-      <main className={colorClassName}>
+      <main className={colorClassName} id={isNight? "night" : ""}>
         <div className="main-weather-section">
           <div className="inner">
             <SearchButton setShowSearchModal={setShowSearchModal} />

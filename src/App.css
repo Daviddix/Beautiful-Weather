@@ -37,7 +37,9 @@ body{
     --l3-elevation : #eeeeee;
     
     --border-color : #00000013;
+}
 
+:root:has(main#night){
     --text-primary :#ffffff ;
     --text-secondary :#cbcbcb ;
     

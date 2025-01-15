@@ -36,10 +36,11 @@ type AddedCountriesArray = string[]
 
 interface SearchResultsProps {
   allAddedCountries : string[],
-  setAllAddedCountries :  React.Dispatch<React.SetStateAction<AddedCountriesArray>>
+  setAllAddedCountries :  React.Dispatch<React.SetStateAction<AddedCountriesArray>>,
+  isNight : boolean
 }
 
-function SearchResult({allAddedCountries, setAllAddedCountries} : SearchResultsProps) {
+function SearchResult({allAddedCountries, setAllAddedCountries, isNight} : SearchResultsProps) {
   const [showSearchModal, setShowSearchModal] = useState(false)
   const {state} = useParams()
   const navigate = useNavigate()
@@ -94,12 +95,12 @@ function SearchResult({allAddedCountries, setAllAddedCountries} : SearchResultsP
  
   
   if(componentState == ComponentStates.loading){
-    return <HomeSkeletonLoader />
+    return <HomeSkeletonLoader page={"search"} isNight={isNight} />
   }else if(componentState == ComponentStates.error){
     return <h1>Error</h1>
   }else{
     return (
-      <main className={colorClassName}>
+      <main className={colorClassName} id={isNight? "night" : ""}>
       <div className="main-weather-section">
         <div className="inner"> 
             <div className="search-plus">

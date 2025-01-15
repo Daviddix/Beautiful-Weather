@@ -1,9 +1,14 @@
 import ForecastSkeleton from "../ForecastSkeleton/ForecastSkeleton"
 import "./HomeSkeletonLoader.css"
 
-function HomeSkeletonLoader() {
+interface HomeSkeletonProps {
+  isNight : boolean,
+  page : string
+}
+
+function HomeSkeletonLoader({isNight, page} : HomeSkeletonProps) {
   return (
-    <main >
+    <main id={isNight ? "night" : ""}>
         <div className="main-weather-section">
           <div className="inner fake">
           <div className="weather-details">
@@ -37,10 +42,15 @@ function HomeSkeletonLoader() {
         <div className="forecast-container">
           <div className="inner">
           <ForecastSkeleton />
-
-  
           </div>
         </div>
+
+        {page == "home" && <div className="added-countries">
+        <div className="inner">
+         <div className="fake-button"></div>
+         <div className="fake-button"></div>
+        </div>
+      </div>}
       </main>
 
   )

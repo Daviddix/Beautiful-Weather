@@ -5,6 +5,10 @@
     margin: 0 0 0 auto;
 }
 
+.plus.hidden{
+    display:none;
+}
+
 .main-weather-section .plus-icon{
     width: 2rem;
 }
