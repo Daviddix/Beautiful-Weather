@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "Weather Extension",
-    "description": "_blank is a chrome extension that makes every link you click open in a new tab",
+    "name": "Beautiful Weather",
+    "description": "Beautiful Weather is a minimal chrome extension that shows you the weather in a beautiful widget",
     "version": "1.0.0",
     "action": { "default_popup": "index.html" },
       "permissions": ["storage", "activeTab", "tabs", "geolocation"],
