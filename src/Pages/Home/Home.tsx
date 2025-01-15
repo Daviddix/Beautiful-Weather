@@ -204,7 +204,7 @@ function Home({allAddedCountries, setAllAddedCountries, isNight} : HomeProps) {
      </>
     )
   }else if(componentState == ComponentStates.error){
-    return <HomepageError />
+    return <HomepageError isNight={isNight} />
   }else{
     return (
       <main className={colorClassName} id={isNight? "night" : ""}>

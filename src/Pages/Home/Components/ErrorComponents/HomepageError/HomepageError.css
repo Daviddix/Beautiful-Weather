@@ -16,3 +16,7 @@
     margin: auto;
     font-size: 1.2rem;
 }
+
+.homepage-error a{
+    color : var(--text-primary);
+}
