@@ -72,7 +72,7 @@ function Home({allAddedCountries, setAllAddedCountries, isNight} : HomeProps) {
   async function getWeatherInformationForSavedCountry(countryName : string){
     setComponentState(ComponentStates.loading)
     try {
-      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${countryName}&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1`)
+      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${countryName}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
       const response = await rawFetch.json()
 
       const newMainWeatherInfo = {
@@ -102,13 +102,14 @@ function Home({allAddedCountries, setAllAddedCountries, isNight} : HomeProps) {
     }
     catch (err) {
       setComponentState(ComponentStates.error)
-      console.log(err)
+      
     }
   }
 
   async function fetchWeatherInformation(long:number, lat:number) {
+    
     try {
-      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&exclude={part}&appid=5df3b8dda637f8873722662b50a8a9c1`)
+      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&exclude={part}&appid=${import.meta.env.VITE_API_KEY}`)
       const response = await rawFetch.json()
 
       const newMainWeatherInfo : MainWeatherInfoProps = {
@@ -139,7 +140,7 @@ function Home({allAddedCountries, setAllAddedCountries, isNight} : HomeProps) {
     }
     catch (err) {
       setComponentState(ComponentStates.error)
-      console.log(err)
+      
     }
   }
 

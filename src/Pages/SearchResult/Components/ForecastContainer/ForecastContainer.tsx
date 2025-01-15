@@ -29,12 +29,12 @@ function ForecastContainer() {
   const [forecastData, setForecastData] = useState<IWeatherForecastData[]>([])
   const [componentState,  setComponentState] = useState(ComponentStates.loading)
   const {state} = useParams()
-  console.log(state)
+  
 
   async function fetchForecastData() {
     try {
       const rawFetch = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${state}&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${state}&units=metric&appid=${import.meta.env.VITE_API_KEY}`
       );
 
       if (!rawFetch.ok) {

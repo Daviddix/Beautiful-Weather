@@ -56,7 +56,7 @@ function SearchResult({allAddedCountries, setAllAddedCountries, isNight} : Searc
   async function fetchWeatherForState(){
     setComponentState(ComponentStates.loading)
     try {
-      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${state}&units=metric&appid=5df3b8dda637f8873722662b50a8a9c1`)
+      const rawFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${state}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
       const response = await rawFetch.json()
 
       const newMainWeatherInfo = {
@@ -85,7 +85,7 @@ function SearchResult({allAddedCountries, setAllAddedCountries, isNight} : Searc
     }
     catch (err) {
       setComponentState(ComponentStates.error)
-      console.log(err)
+      
     }
   }
 
