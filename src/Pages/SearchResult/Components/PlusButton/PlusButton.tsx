@@ -20,6 +20,8 @@ function PlusButton({allAddedCountries, setAllAddedCountries, state} : PlusButto
           setAllAddedCountries(previousCountries)
           await chrome.storage.local.set({addedCountries : previousCountries})
           setShouldDisplay(false)
+        }else{
+          alert("Sorry, You can't save more than 4 locations")
         }
       }
 
